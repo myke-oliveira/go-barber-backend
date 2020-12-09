@@ -9,6 +9,13 @@ class AppointmentsRepository {
   }
 
   /**
+   * all
+   */
+  public all(): Appointment[] {
+    return this.appointments;
+  }
+
+  /**
    * findByDate
    */
   public findByDate(date: Date): Appointment | null {
@@ -22,8 +29,8 @@ class AppointmentsRepository {
   /**
    * create
    */
-  public create(provider: string, date: Date): Appointment {
-    const appointment = new Appointment(provider, date);
+  public create({ provider, date }: Omit<Appointment, 'id'>): Appointment {
+    const appointment = new Appointment({ provider, date });
 
     this.appointments.push(appointment);
 
